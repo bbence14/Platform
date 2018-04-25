@@ -1,0 +1,179 @@
+<div>
+
+
+<div class="container-fluid">
+  <div class="row">
+  <div class="col-md-9">
+      <div class="card text-white primary mb-3">
+      <div class="card-header">GE Prices time series</div>
+      <div class="card-body">
+        <canvas id="myChart" width="400" height="200"></canvas>
+      </div>
+    </div>
+
+  </div>
+  <div class="col-md-3">
+      <div class="row">
+          <div class="col-md-12">
+              <div class="card text-white bg-primary mb-3">
+                  <div class="card-header">Algorithm</div>
+                  <div class="card-body">
+                        <div class="list-group">
+                          <a href="#" class="list-group-item list-group-item-action active">Predicted price: 55$</a>
+                          <a href="#" class="list-group-item list-group-item-action">Buy 100 GE security</a>
+                          <a href="#" class="list-group-item list-group-item-action disabled">MAE: 10%</a>
+                        </div>
+                      <button type="button" id="addData" class="btn btn-success" ng-click = 'message()'>{{ next_day }}</button>
+                  </div>
+            </div>
+          </div>
+      </div>
+      <div  class="row">
+          <div class="col-md-12">
+
+             <div class="card text-white bg-primary mb-3">
+                  <div class="card-header">Actual price</div>
+                  <div class="card-body">
+                    <canvas id="myBar" width="400" height="200"></canvas>
+                  </div>
+            </div>
+
+          </div>
+      </div>
+
+  </div>
+</div>
+</div>
+
+
+
+<script>
+    //var prices = angular.element(document.getElementById('StockController')).scope().ge_prices;
+
+    $(document).ready(function() {
+
+        var ctx2 = document.getElementById("myBar").getContext('2d');
+        var myChart = new Chart(ctx2, {
+            type: 'bar',
+            data: {
+                labels: ["Red"],
+                datasets: [{
+                    label: 'Actual prices $',
+                    data: [25],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255,99,132,1)',
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+
+                scales: {
+                    xAxes: [{
+                        gridLines: {
+                            offsetGridLines: true
+                        }
+                    }]
+
+                }
+            }
+        });
+
+        var available_data = 0;
+        $.getJSON( "/stocks/GE/", function( json ) {
+            var ge_opens = [];
+            var ge_close = [];
+            var ge_adj = [];
+            var ge_dates = [];
+            var shows = [];
+            available_data = json.length;
+            var actual = json.length-4;
+            for(var i=0; i < actual; i++) {
+                ge_opens.push(json[i].open_price);
+                ge_close.push(json[i].close_price);
+                ge_adj.push(json[i].adj_price);
+                ge_dates.push(json[i].dates);
+                shows.push({'open':json[i].open_price, 'adj':json[i].adj_price});
+            }
+        console.log(shows);
+        var ctx = document.getElementById("myChart").getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ge_dates,
+                datasets: [{
+					label: 'Open price',
+					data: ge_opens,
+					borderColor: "blue",
+					backgroundColor: 'rgba(0, 0, 0, 0)',
+					fill: false,
+					cubicInterpolationMode: 'monotone'
+				},{
+					label: 'Close price',
+					data: ge_close,
+					borderColor: "green",
+					backgroundColor: 'rgba(0, 0, 0, 0)',
+					fill: false,
+					cubicInterpolationMode: 'monotone'
+				},{
+					label: 'Adjusted price',
+					data: ge_adj,
+					borderColor: "red",
+					backgroundColor: 'rgba(0, 0, 0, 0)',
+					fill: false,
+					cubicInterpolationMode: 'monotone'
+				}]
+            },
+            options: {
+				responsive: true,
+				tooltips: {
+					mode: 'index'
+				},
+				scales: {
+					xAxes: [{
+						display: true,
+						scaleLabel: {
+							display: true
+						}
+					}],
+					yAxes: [{
+						display: true,
+						scaleLabel: {
+							display: true,
+							labelString: 'Value'
+						}
+
+					}]
+				}
+			}
+        });
+
+        document.getElementById('addData').addEventListener('click', function() {
+           if (actual < available_data){
+                var i = actual;
+
+                ge_opens.push(json[i].open_price);
+                ge_close.push(json[i].close_price);
+                ge_adj.push(json[i].adj_price);
+                ge_dates.push(json[i].dates);
+                shows.push({'open':json[i].open_price, 'adj':json[i].adj_price});
+
+
+				myChart.update();
+				actual++;
+           }else{
+               console.log("Not anymore");
+           }
+
+		});
+        });
+
+
+
+    });
+</script>
+
+</div>
