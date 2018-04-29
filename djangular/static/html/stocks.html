@@ -2,6 +2,7 @@
 
 
 <div class="container-fluid">
+
   <div class="row">
   <div class="col-md-9">
       <div class="card text-white primary mb-3">
@@ -15,11 +16,30 @@
   <div class="col-md-3">
       <div class="row">
           <div class="col-md-12">
+              <div class="form-group">
+              <label class="control-label">{{ user.username }} balance</label>
+              <div class="form-group">
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">$</span>
+                  </div>
+                  <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" value="1&#32;000&#32;000" readonly style="text-align: right;">
+                  <div class="input-group-append">
+                    <span class="input-group-text">.00</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-md-12">
               <div class="card text-white bg-primary mb-3">
                   <div class="card-header">Algorithm</div>
                   <div class="card-body">
                         <div class="list-group">
-                          <a href="#" class="list-group-item list-group-item-action active">Predicted price: 55$</a>
+                          <a href="#" class="list-group-item list-group-item-action active">Predicted price: {{ predicted_price }}$</a>
                           <a href="#" class="list-group-item list-group-item-action">Buy 100 GE security</a>
                           <a href="#" class="list-group-item list-group-item-action disabled">MAE: 10%</a>
                         </div>

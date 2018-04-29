@@ -1,16 +1,31 @@
 <form ng-submit="login()">
-    <div style="color: red">{{ login_error }}</div>
-    <div>
-        <label>Username</label>
-        <input type="text" ng-model="user.username"/>
-    </div>
+<div class="container-fluid">
 
-    <div>
-        <label>Password</label>
-        <input type="password" ng-model="user.password"/>
-    </div>
+  <div class="row">
+      <div class="col-md-5"></div>
+      <div class="col-md-offset-5">
+          <div class="card border-success mb-3" style="max-width: 20rem;">
+          <div class="card-header">Login page</div>
+          <div class="card-body">
+            <div style="color: red">{{ login_error }}</div>
+            <p class="card-text">
+                <div class="form-group">
+                  <label class="col-form-label" for="inputDefault">Username</label>
+                  <input type="text" class="form-control" placeholder="Your username" id="inputDefault" ng-model="user.username">
+                </div>
 
-    <div>
-        <button type="submit">Submit</button>
-    </div>
+               <div class="form-group">
+                  <label class="col-form-label" for="inputDefault">Password</label>
+                  <input type="password" class="form-control" placeholder="Your password" id="inputDefault" ng-model="user.password">
+                </div>
+              <div class="form-group" >
+                <div class="central offset-3"><button type="subbmit" class="btn btn-success ">Success</button></div>
+              </div>
+            </p>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+
 </form>
