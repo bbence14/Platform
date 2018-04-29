@@ -14,5 +14,6 @@ class Stock_GE(models.Model):
     volume_price = models.FloatField(null=False)
     cahanges = models.IntegerField()
 
-    def __str__(self):
-        return "Project: {}".format(self.name)
+#    def __str__(self):
+#        return "Project: {}".format(self.name)
+
