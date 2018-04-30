@@ -32,28 +32,47 @@ class TestClass(ViewSet):
         #ret = queryset[int(self.request.GET["q"])].dates
 
         return Response({
-            "publish_updatetime": 1,
-            "meeting_updatetime": "Pali",
-            "training_updatetime": "Ezel occa",
-            "exhibiting_updatetime": "Ez is ki van toltve",
+            "Test_Response":200
             #"query": str(ret)
         })
 
 
     def create(self, request, format=None, *args, **kwargs):
+
         """
         Implementing a machine learning algorithms
-
+            - ARIMA
         """
-        
-        #queryset = Stock_GE.objects.all()
-        #rest_value = queryset[init(request)].dates
-        value = 0
+        queryset = Stock_GE.objects.all()
+        value = self.request.GET.get('q', 0)
 
-        value = self.request.GET.get('q', -1)
+        prices = list()
+        for i in range(0, len(queryset)-int(value)):
+            prices.append(queryset[i].close_price)
+
+        def arima_prediction(prices):
+            from statsmodels.tsa.arima_model import ARIMA
+            from numpy import linalg as LA
+            try:
+                model = ARIMA(prices, order=(5, 1, 0))
+                model_fit = model.fit(disp=0)
+                output = model_fit.forecast()
+                return output[0][0]
+            except LA.LinAlgError:
+                return -1
+
+        next_day = 0
+        try:
+            next_day = queryset[(len(prices) - int(value) + 1)].close_price
+        except BaseException:
+            next_day = 0
 
         return Response({
-            "Type": str(value)
+            "before_arima": prices[-1],
+            "arima": arima_prediction(prices),
+            "close": next_day
+
+            #"Predicted":
             #"Many": int(request.body)
 
         })
