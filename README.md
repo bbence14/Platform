@@ -1,7 +1,7 @@
 # Platform
 
-The platform need to a special Python environment with the following dependencies:
-Package             Version
+The platform need to a special Python environment with the following dependencies: \n
+Package             Version \n
 ------------------- ---------
 certifi             2018.4.16
 Django              2.0.2
