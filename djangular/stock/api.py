@@ -28,32 +28,32 @@ class TestClass(ViewSet):
 
 
         #return Response(serializer.data)
-        queryset = Stock_GE.objects.all()
-        ret = queryset[int(self.request.GET["q"])].dates
-        
+        #queryset = Stock_GE.objects.all()
+        #ret = queryset[int(self.request.GET["q"])].dates
+
         return Response({
             "publish_updatetime": 1,
             "meeting_updatetime": "Pali",
             "training_updatetime": "Ezel occa",
             "exhibiting_updatetime": "Ez is ki van toltve",
-            "query": str(ret)
+            #"query": str(ret)
         })
 
 
     def create(self, request, format=None, *args, **kwargs):
         """
-        Return a list of all users.
-
-        def init(request):
-            rest_value = request.body
-            rest_value
-
+        Implementing a machine learning algorithms
 
         """
+        
         #queryset = Stock_GE.objects.all()
         #rest_value = queryset[init(request)].dates
+        value = 0
+
+        value = self.request.GET.get('q', -1)
+
         return Response({
-            "Type": str(self.request.GET("q"))
+            "Type": str(value)
             #"Many": int(request.body)
 
         })
