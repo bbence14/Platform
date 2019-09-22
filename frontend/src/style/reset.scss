@@ -1,0 +1,20 @@
+// This file includes global CSS defaults, such as margins
+// and removing outlines.
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+*:focus {
+    outline: none;
+}
+
+a::-moz-focus-inner {
+    outline: none;
+    border-color: transparent;
+}
+
+* {
+    color: white;
+}

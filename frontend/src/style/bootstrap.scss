@@ -1,0 +1,33 @@
+// This file contains imports and customizations for bootstrap
+
+@import './colors';
+
+// Custom bootstrap variables
+
+$theme-colors: (
+    'primary': $color-primary-0,
+    'primary-light': $color-primary-0,
+    'primary-dark': $color-primary-4,
+    'dark': $gray-dark,
+    'accent': $color-secondary-2-1,
+    'secondary': $color-secondary-1-0,
+    'warning': $color-warning,
+    'danger': $color-danger,
+    'info': $color-info
+);
+
+$body-bg: $gray-darkest;
+
+$link-color:            $color-primary-3;
+$link-hover-color:      $color-secondary-2-1;
+
+// The bootstrap components
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
+@import '~bootstrap/scss/reboot';
+@import '~bootstrap/scss/buttons';
+@import '~bootstrap/scss/nav';
+@import '~bootstrap/scss/navbar';
+@import '~bootstrap/scss/utilities';
+@import '~bootstrap/scss/grid';

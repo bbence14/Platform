@@ -1,0 +1,1381 @@
+openapi: 3.0.2
+info:
+  title: ''
+  version: ''
+paths:
+  /scrumboard/lists/:
+    get:
+      operationId: listLists
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  properties:
+                    id:
+                      type: integer
+                      readOnly: true
+                    cards:
+                      type: array
+                      items:
+                        properties:
+                          id:
+                            type: integer
+                            readOnly: true
+                          title:
+                            type: string
+                            maxLength: 100
+                          description:
+                            type: string
+                          story_points:
+                            type: integer
+                            nullable: true
+                          business_value:
+                            type: integer
+                            nullable: true
+                          list:
+                            type: integer
+                          owner:
+                            type: integer
+                            nullable: true
+                        required:
+                        - title
+                        - list
+                      readOnly: true
+                    name:
+                      type: string
+                      maxLength: 50
+                    project:
+                      type: integer
+                  required:
+                  - name
+                  - project
+          description: ''
+    post:
+      operationId: createList
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                name:
+                  type: string
+                  maxLength: 50
+                project:
+                  type: integer
+              required:
+              - name
+              - project
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  cards:
+                    type: array
+                    items:
+                      properties:
+                        id:
+                          type: integer
+                          readOnly: true
+                        title:
+                          type: string
+                          maxLength: 100
+                        description:
+                          type: string
+                        story_points:
+                          type: integer
+                          nullable: true
+                        business_value:
+                          type: integer
+                          nullable: true
+                        list:
+                          type: integer
+                        owner:
+                          type: integer
+                          nullable: true
+                      required:
+                      - title
+                      - list
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 50
+                  project:
+                    type: integer
+                required:
+                - name
+                - project
+          description: ''
+  /scrumboard/lists/{id}/:
+    get:
+      operationId: retrieveList
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this list.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  cards:
+                    type: array
+                    items:
+                      properties:
+                        id:
+                          type: integer
+                          readOnly: true
+                        title:
+                          type: string
+                          maxLength: 100
+                        description:
+                          type: string
+                        story_points:
+                          type: integer
+                          nullable: true
+                        business_value:
+                          type: integer
+                          nullable: true
+                        list:
+                          type: integer
+                        owner:
+                          type: integer
+                          nullable: true
+                      required:
+                      - title
+                      - list
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 50
+                  project:
+                    type: integer
+                required:
+                - name
+                - project
+          description: ''
+    put:
+      operationId: updateList
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this list.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                name:
+                  type: string
+                  maxLength: 50
+                project:
+                  type: integer
+              required:
+              - name
+              - project
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  cards:
+                    type: array
+                    items:
+                      properties:
+                        id:
+                          type: integer
+                          readOnly: true
+                        title:
+                          type: string
+                          maxLength: 100
+                        description:
+                          type: string
+                        story_points:
+                          type: integer
+                          nullable: true
+                        business_value:
+                          type: integer
+                          nullable: true
+                        list:
+                          type: integer
+                        owner:
+                          type: integer
+                          nullable: true
+                      required:
+                      - title
+                      - list
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 50
+                  project:
+                    type: integer
+                required:
+                - name
+                - project
+          description: ''
+    patch:
+      operationId: partial_updateList
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this list.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                name:
+                  type: string
+                  maxLength: 50
+                project:
+                  type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  cards:
+                    type: array
+                    items:
+                      properties:
+                        id:
+                          type: integer
+                          readOnly: true
+                        title:
+                          type: string
+                          maxLength: 100
+                        description:
+                          type: string
+                        story_points:
+                          type: integer
+                          nullable: true
+                        business_value:
+                          type: integer
+                          nullable: true
+                        list:
+                          type: integer
+                        owner:
+                          type: integer
+                          nullable: true
+                      required:
+                      - title
+                      - list
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 50
+                  project:
+                    type: integer
+                required:
+                - name
+                - project
+          description: ''
+    delete:
+      operationId: destroyList
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this list.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+  /scrumboard/cards/:
+    get:
+      operationId: listCards
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  properties:
+                    id:
+                      type: integer
+                      readOnly: true
+                    title:
+                      type: string
+                      maxLength: 100
+                    description:
+                      type: string
+                    story_points:
+                      type: integer
+                      nullable: true
+                    business_value:
+                      type: integer
+                      nullable: true
+                    list:
+                      type: integer
+                    owner:
+                      type: integer
+                      nullable: true
+                  required:
+                  - title
+                  - list
+          description: ''
+    post:
+      operationId: createCard
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                title:
+                  type: string
+                  maxLength: 100
+                description:
+                  type: string
+                story_points:
+                  type: integer
+                  nullable: true
+                business_value:
+                  type: integer
+                  nullable: true
+                list:
+                  type: integer
+                owner:
+                  type: integer
+                  nullable: true
+              required:
+              - title
+              - list
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  title:
+                    type: string
+                    maxLength: 100
+                  description:
+                    type: string
+                  story_points:
+                    type: integer
+                    nullable: true
+                  business_value:
+                    type: integer
+                    nullable: true
+                  list:
+                    type: integer
+                  owner:
+                    type: integer
+                    nullable: true
+                required:
+                - title
+                - list
+          description: ''
+  /scrumboard/cards/{id}/:
+    get:
+      operationId: retrieveCard
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this card.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  title:
+                    type: string
+                    maxLength: 100
+                  description:
+                    type: string
+                  story_points:
+                    type: integer
+                    nullable: true
+                  business_value:
+                    type: integer
+                    nullable: true
+                  list:
+                    type: integer
+                  owner:
+                    type: integer
+                    nullable: true
+                required:
+                - title
+                - list
+          description: ''
+    put:
+      operationId: updateCard
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this card.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                title:
+                  type: string
+                  maxLength: 100
+                description:
+                  type: string
+                story_points:
+                  type: integer
+                  nullable: true
+                business_value:
+                  type: integer
+                  nullable: true
+                list:
+                  type: integer
+                owner:
+                  type: integer
+                  nullable: true
+              required:
+              - title
+              - list
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  title:
+                    type: string
+                    maxLength: 100
+                  description:
+                    type: string
+                  story_points:
+                    type: integer
+                    nullable: true
+                  business_value:
+                    type: integer
+                    nullable: true
+                  list:
+                    type: integer
+                  owner:
+                    type: integer
+                    nullable: true
+                required:
+                - title
+                - list
+          description: ''
+    patch:
+      operationId: partial_updateCard
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this card.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                title:
+                  type: string
+                  maxLength: 100
+                description:
+                  type: string
+                story_points:
+                  type: integer
+                  nullable: true
+                business_value:
+                  type: integer
+                  nullable: true
+                list:
+                  type: integer
+                owner:
+                  type: integer
+                  nullable: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  title:
+                    type: string
+                    maxLength: 100
+                  description:
+                    type: string
+                  story_points:
+                    type: integer
+                    nullable: true
+                  business_value:
+                    type: integer
+                    nullable: true
+                  list:
+                    type: integer
+                  owner:
+                    type: integer
+                    nullable: true
+                required:
+                - title
+                - list
+          description: ''
+    delete:
+      operationId: destroyCard
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this card.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+  /scrumboard/projects/:
+    get:
+      operationId: listProjects
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  properties:
+                    id:
+                      type: integer
+                      readOnly: true
+                    lists:
+                      type: array
+                      items:
+                        properties:
+                          id:
+                            type: integer
+                            readOnly: true
+                          cards:
+                            type: array
+                            items:
+                              properties:
+                                id:
+                                  type: integer
+                                  readOnly: true
+                                title:
+                                  type: string
+                                  maxLength: 100
+                                description:
+                                  type: string
+                                story_points:
+                                  type: integer
+                                  nullable: true
+                                business_value:
+                                  type: integer
+                                  nullable: true
+                                list:
+                                  type: integer
+                                owner:
+                                  type: integer
+                                  nullable: true
+                              required:
+                              - title
+                              - list
+                            readOnly: true
+                          name:
+                            type: string
+                            maxLength: 50
+                          project:
+                            type: integer
+                        required:
+                        - name
+                        - project
+                      readOnly: true
+                    members:
+                      type: array
+                      items:
+                        properties:
+                          id:
+                            type: integer
+                            readOnly: true
+                          username:
+                            type: string
+                            description: Required. 150 characters or fewer. Letters,
+                              digits and @/./+/-/_ only.
+                            pattern: ^[\w.@+-]+$
+                            maxLength: 150
+                        required:
+                        - username
+                      readOnly: true
+                    name:
+                      type: string
+                      maxLength: 60
+                  required:
+                  - name
+          description: ''
+    post:
+      operationId: createProject
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                name:
+                  type: string
+                  maxLength: 60
+              required:
+              - name
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  lists:
+                    type: array
+                    items:
+                      properties:
+                        id:
+                          type: integer
+                          readOnly: true
+                        cards:
+                          type: array
+                          items:
+                            properties:
+                              id:
+                                type: integer
+                                readOnly: true
+                              title:
+                                type: string
+                                maxLength: 100
+                              description:
+                                type: string
+                              story_points:
+                                type: integer
+                                nullable: true
+                              business_value:
+                                type: integer
+                                nullable: true
+                              list:
+                                type: integer
+                              owner:
+                                type: integer
+                                nullable: true
+                            required:
+                            - title
+                            - list
+                          readOnly: true
+                        name:
+                          type: string
+                          maxLength: 50
+                        project:
+                          type: integer
+                      required:
+                      - name
+                      - project
+                    readOnly: true
+                  members:
+                    type: array
+                    items:
+                      properties:
+                        id:
+                          type: integer
+                          readOnly: true
+                        username:
+                          type: string
+                          description: Required. 150 characters or fewer. Letters,
+                            digits and @/./+/-/_ only.
+                          pattern: ^[\w.@+-]+$
+                          maxLength: 150
+                      required:
+                      - username
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 60
+                required:
+                - name
+          description: ''
+  /scrumboard/projects/{id}/:
+    get:
+      operationId: retrieveProject
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  lists:
+                    type: array
+                    items:
+                      properties:
+                        id:
+                          type: integer
+                          readOnly: true
+                        cards:
+                          type: array
+                          items:
+                            properties:
+                              id:
+                                type: integer
+                                readOnly: true
+                              title:
+                                type: string
+                                maxLength: 100
+                              description:
+                                type: string
+                              story_points:
+                                type: integer
+                                nullable: true
+                              business_value:
+                                type: integer
+                                nullable: true
+                              list:
+                                type: integer
+                              owner:
+                                type: integer
+                                nullable: true
+                            required:
+                            - title
+                            - list
+                          readOnly: true
+                        name:
+                          type: string
+                          maxLength: 50
+                        project:
+                          type: integer
+                      required:
+                      - name
+                      - project
+                    readOnly: true
+                  members:
+                    type: array
+                    items:
+                      properties:
+                        id:
+                          type: integer
+                          readOnly: true
+                        username:
+                          type: string
+                          description: Required. 150 characters or fewer. Letters,
+                            digits and @/./+/-/_ only.
+                          pattern: ^[\w.@+-]+$
+                          maxLength: 150
+                      required:
+                      - username
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 60
+                required:
+                - name
+          description: ''
+    put:
+      operationId: updateProject
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                name:
+                  type: string
+                  maxLength: 60
+              required:
+              - name
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  lists:
+                    type: array
+                    items:
+                      properties:
+                        id:
+                          type: integer
+                          readOnly: true
+                        cards:
+                          type: array
+                          items:
+                            properties:
+                              id:
+                                type: integer
+                                readOnly: true
+                              title:
+                                type: string
+                                maxLength: 100
+                              description:
+                                type: string
+                              story_points:
+                                type: integer
+                                nullable: true
+                              business_value:
+                                type: integer
+                                nullable: true
+                              list:
+                                type: integer
+                              owner:
+                                type: integer
+                                nullable: true
+                            required:
+                            - title
+                            - list
+                          readOnly: true
+                        name:
+                          type: string
+                          maxLength: 50
+                        project:
+                          type: integer
+                      required:
+                      - name
+                      - project
+                    readOnly: true
+                  members:
+                    type: array
+                    items:
+                      properties:
+                        id:
+                          type: integer
+                          readOnly: true
+                        username:
+                          type: string
+                          description: Required. 150 characters or fewer. Letters,
+                            digits and @/./+/-/_ only.
+                          pattern: ^[\w.@+-]+$
+                          maxLength: 150
+                      required:
+                      - username
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 60
+                required:
+                - name
+          description: ''
+    patch:
+      operationId: partial_updateProject
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                name:
+                  type: string
+                  maxLength: 60
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  lists:
+                    type: array
+                    items:
+                      properties:
+                        id:
+                          type: integer
+                          readOnly: true
+                        cards:
+                          type: array
+                          items:
+                            properties:
+                              id:
+                                type: integer
+                                readOnly: true
+                              title:
+                                type: string
+                                maxLength: 100
+                              description:
+                                type: string
+                              story_points:
+                                type: integer
+                                nullable: true
+                              business_value:
+                                type: integer
+                                nullable: true
+                              list:
+                                type: integer
+                              owner:
+                                type: integer
+                                nullable: true
+                            required:
+                            - title
+                            - list
+                          readOnly: true
+                        name:
+                          type: string
+                          maxLength: 50
+                        project:
+                          type: integer
+                      required:
+                      - name
+                      - project
+                    readOnly: true
+                  members:
+                    type: array
+                    items:
+                      properties:
+                        id:
+                          type: integer
+                          readOnly: true
+                        username:
+                          type: string
+                          description: Required. 150 characters or fewer. Letters,
+                            digits and @/./+/-/_ only.
+                          pattern: ^[\w.@+-]+$
+                          maxLength: 150
+                      required:
+                      - username
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 60
+                required:
+                - name
+          description: ''
+    delete:
+      operationId: destroyProject
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+  /auth_api/logout/:
+    get:
+      operationId: listLogouts
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items: {}
+          description: ''
+  /stocks/GE/:
+    get:
+      operationId: listStock_GEs
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  properties:
+                    id:
+                      type: integer
+                      readOnly: true
+                    dates:
+                      type: string
+                      maxLength: 50
+                    open_price:
+                      type: number
+                    high_price:
+                      type: number
+                    low_price:
+                      type: number
+                    close_price:
+                      type: number
+                    adj_price:
+                      type: number
+                    volume_price:
+                      type: number
+                    cahanges:
+                      type: integer
+                  required:
+                  - dates
+                  - open_price
+                  - high_price
+                  - low_price
+                  - close_price
+                  - adj_price
+                  - volume_price
+                  - cahanges
+          description: ''
+    post:
+      operationId: createStock_GE
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                dates:
+                  type: string
+                  maxLength: 50
+                open_price:
+                  type: number
+                high_price:
+                  type: number
+                low_price:
+                  type: number
+                close_price:
+                  type: number
+                adj_price:
+                  type: number
+                volume_price:
+                  type: number
+                cahanges:
+                  type: integer
+              required:
+              - dates
+              - open_price
+              - high_price
+              - low_price
+              - close_price
+              - adj_price
+              - volume_price
+              - cahanges
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  dates:
+                    type: string
+                    maxLength: 50
+                  open_price:
+                    type: number
+                  high_price:
+                    type: number
+                  low_price:
+                    type: number
+                  close_price:
+                    type: number
+                  adj_price:
+                    type: number
+                  volume_price:
+                    type: number
+                  cahanges:
+                    type: integer
+                required:
+                - dates
+                - open_price
+                - high_price
+                - low_price
+                - close_price
+                - adj_price
+                - volume_price
+                - cahanges
+          description: ''
+  /stocks/GE/{id}/:
+    get:
+      operationId: retrieveStock_GE
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this stock_ge.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  dates:
+                    type: string
+                    maxLength: 50
+                  open_price:
+                    type: number
+                  high_price:
+                    type: number
+                  low_price:
+                    type: number
+                  close_price:
+                    type: number
+                  adj_price:
+                    type: number
+                  volume_price:
+                    type: number
+                  cahanges:
+                    type: integer
+                required:
+                - dates
+                - open_price
+                - high_price
+                - low_price
+                - close_price
+                - adj_price
+                - volume_price
+                - cahanges
+          description: ''
+    put:
+      operationId: updateStock_GE
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this stock_ge.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                dates:
+                  type: string
+                  maxLength: 50
+                open_price:
+                  type: number
+                high_price:
+                  type: number
+                low_price:
+                  type: number
+                close_price:
+                  type: number
+                adj_price:
+                  type: number
+                volume_price:
+                  type: number
+                cahanges:
+                  type: integer
+              required:
+              - dates
+              - open_price
+              - high_price
+              - low_price
+              - close_price
+              - adj_price
+              - volume_price
+              - cahanges
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  dates:
+                    type: string
+                    maxLength: 50
+                  open_price:
+                    type: number
+                  high_price:
+                    type: number
+                  low_price:
+                    type: number
+                  close_price:
+                    type: number
+                  adj_price:
+                    type: number
+                  volume_price:
+                    type: number
+                  cahanges:
+                    type: integer
+                required:
+                - dates
+                - open_price
+                - high_price
+                - low_price
+                - close_price
+                - adj_price
+                - volume_price
+                - cahanges
+          description: ''
+    patch:
+      operationId: partial_updateStock_GE
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this stock_ge.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                dates:
+                  type: string
+                  maxLength: 50
+                open_price:
+                  type: number
+                high_price:
+                  type: number
+                low_price:
+                  type: number
+                close_price:
+                  type: number
+                adj_price:
+                  type: number
+                volume_price:
+                  type: number
+                cahanges:
+                  type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  dates:
+                    type: string
+                    maxLength: 50
+                  open_price:
+                    type: number
+                  high_price:
+                    type: number
+                  low_price:
+                    type: number
+                  close_price:
+                    type: number
+                  adj_price:
+                    type: number
+                  volume_price:
+                    type: number
+                  cahanges:
+                    type: integer
+                required:
+                - dates
+                - open_price
+                - high_price
+                - low_price
+                - close_price
+                - adj_price
+                - volume_price
+                - cahanges
+          description: ''
+    delete:
+      operationId: destroyStock_GE
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this stock_ge.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+  /stocks/Predict/:
+    get:
+      operationId: listTestClass
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items: {}
+          description: ''
+    post:
+      operationId: createTestClass
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+  /auth_api/login/:
+    post:
+      operationId: CreateLogin
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: ''
