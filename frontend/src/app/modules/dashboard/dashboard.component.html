@@ -1,0 +1,48 @@
+<nav
+    class="
+        navbar
+        navbar-expand-sm
+        navbar-dark
+        bg-dark
+        shadow-sm
+        border-bottom
+        border-secondary
+    "
+>
+    <a class="navbar-brand" routerLink="/dashboard/home">Trading Platform</a>
+
+    <div class="collapse navbar-collapse">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a
+                    class="nav-link"
+                    routerLink="/dashboard/home"
+                    routerLinkActive="active"
+                    >Home</a
+                >
+            </li>
+            <li class="nav-item">
+                <a
+                    class="nav-link"
+                    routerLink="/dashboard/features"
+                    routerLinkActive="active"
+                    >Features</a
+                >
+            </li>
+            <li class="nav-item">
+                <a
+                    class="nav-link"
+                    routerLink="/dashboard/about"
+                    routerLinkActive="active"
+                    >About</a
+                >
+            </li>
+        </ul>
+
+        <button type="button" class="btn btn-danger">Logout</button>
+    </div>
+</nav>
+
+<div class="content p-3 container">
+    <router-outlet></router-outlet>
+</div>

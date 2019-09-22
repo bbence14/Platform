@@ -1,24 +1,14 @@
-# Platform
+# Django Backend
 
-The platform need to a special Python environment with the following dependencies: \n
-Package             Version \n
-------------------- ---------
-certifi             2018.4.16
-Django              2.0.2
-djangorestframework 3.8.2
-mkl-fft             1.0.0
-mkl-random          1.0.1
-numpy               1.14.3
-pandas              0.22.0
-patsy               0.5.0
-pip                 10.0.1
-python-dateutil     2.7.2
-pytz                2018.4
-scikit-learn        0.19.1
-scipy               1.0.1
-setuptools          39.0.1
-six                 1.11.0
-sklearn             0.0
-statsmodels         0.8.0
-wheel               0.31.0
-wincertstore        0.2
+## Quick start
+
+- Install [Pipenv](https://docs.pipenv.org/en/latest/install/#installing-pipenv)
+- Run `pipenv sync` and then `pipenv run app/manage.py runserver`
+
+# Angular SPA
+
+## Quick start
+
+- Start the backend first
+- Install [Angular CLI](https://cli.angular.io/)
+- Run `npm install` and then `ng serve` in the frontend directory.
