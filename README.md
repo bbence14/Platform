@@ -3,7 +3,7 @@
 ## Quick start
 
 - Install [Pipenv](https://docs.pipenv.org/en/latest/install/#installing-pipenv)
-- Run `pipenv sync` and then `pipenv run app/manage.py runserver`
+- Run `pipenv sync` and then `pipenv run python3 app/manage.py runserver` in the backend directory.
 
 # Angular SPA
 
